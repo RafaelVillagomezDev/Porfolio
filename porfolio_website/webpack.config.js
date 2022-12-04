@@ -1,10 +1,12 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
   mode: 'development',
   output: {
-    filename: 'bundle[contenthash].js',
+    filename: 'bundle.[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '',
   },
@@ -15,9 +17,6 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
         },
       },
     ],
@@ -25,4 +24,10 @@ module.exports = {
   resolve: {
     extensions: ['js', 'jsx', 'json'],
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+  ],
 }
