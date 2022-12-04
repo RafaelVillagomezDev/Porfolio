@@ -15,9 +15,15 @@ module.exports = {
       {
         test: /.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: 'babel-loader',
+      },
+      {
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /.(css|sass|scss)$/,
+      },
+      {
+        type: 'asset',
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
       },
     ],
   },
